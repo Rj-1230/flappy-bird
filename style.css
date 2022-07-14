@@ -1,0 +1,85 @@
+*, *::after, *::before{
+    box-sizing: border-box;
+}
+
+body{
+    margin:0;
+    padding: 0;
+    overflow: hidden;
+    color:white;
+    background-color: rgb(0,0,0);
+    /* overflow hidden because we don't want scroll bars if pipe go beyond our screen */
+}
+
+.title{
+    z-index: 10; 
+    /* z-index ko 10 krna mtlb ye sabse upar dikhai de */
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    inset: 0;
+    /* setting inset to 0 sets all top,left ,right, bottom properties to 0 */
+    margin: 0;
+    flex-direction: column;
+}
+
+.subtitle{
+margin-top: 0.5rem;
+}
+
+.hide{
+    display:none;
+}
+
+.bird{
+    --bird-top:000;
+    /* Initially, the bird top variable is set to high negative value to hide it from the screen when the gane starts */
+    --bird-size: 40px;
+    background-color: white;
+    position:absolute;
+    width: var(--bird-size);
+    height: var(--bird-size);
+    left: var(--bird-size);
+    top: calc(var(--bird-top)*1px);
+    /* We will update the height of bird from top dynamically 
+    this we will store in bird-top variable */
+    border-radius: 50%;
+}
+
+.pipe{
+    --pipe-left : 100;
+    --hole-top : 500;
+    /* --hole-height:180; 
+    --pipe-width:40; */
+    position:absolute;
+    top:0;
+    bottom:0;
+    width:calc(var(--pipe-width)*1px);
+    left:calc(var(--pipe-left)*1px);
+}
+
+.pipe > .segment{
+    position: absolute;
+    width:100%;
+    background-color: teal
+}
+
+.pipe> .top{
+    top:0;
+    /* bottom:500px; */
+    bottom : calc(var(--hole-top)*1px)
+    /* niche se itna margin hole-top ke barabar */
+}
+
+.pipe> .bottom{
+    bottom:0;
+    /* top:500px; */
+    top : calc(100vh -  (var(--hole-top)*1px) + calc(var(--hole-height)*1px))   ;
+}
+
+#scoreboard{
+    position: absolute;
+    right:10px;
+    z-index: 10;
+}
